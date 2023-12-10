@@ -16,8 +16,8 @@ Rails.application.routes.draw do
 
   root 'home#index'
   get 'users/index'
-  match '/users', to: 'users#index', via: 'get'
-  devise_for :users, controllers: {
-    registrations: 'users/registrations'
-  }
+  # match '/users', to: 'users#index', via: 'get'
+  # devise_for :users, controllers: {
+  #   registrations: 'users/registrations'
+  # }
 end

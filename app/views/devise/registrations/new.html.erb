@@ -1,0 +1,35 @@
+<div class="form-check m-auto" id="sign_up">
+  <h1 class=" text-white h3 mb-3 fw-normal">Create your Account</h1><br/>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="form-floating">
+      <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "form-control", id: "floatingInput" %>
+      <%= f.label :username, for: "floatingInput" %><br/>
+    </div>
+
+    <div class="form-floating">
+      <%= f.email_field :email, autocomplete: "email", class: "form-control", id: "floatingInput" %>
+      <%= f.label :email, for: "floatingInput" %><br/>
+    </div>
+
+    <div class="form-floating">
+      <%= f.password_field :password, autocomplete: "new-password", class: "form-control", id: "floatingPassword" %>
+      <%= f.label :password, label: "floatingPassword" %>
+      <% if @minimum_password_length %>
+        <em class="text-white-50">(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %>
+    </div>
+
+    <div class="form-floating">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control",
+                           id: "floatingConfirmPassword" %>
+      <%= f.label :password_confirmation, for: "floatingConfirmPassword" %>
+    </div>
+    <p class="form-check text-white my-3">Already have an account?<%= render "devise/shared/links" %></p>
+    <br/>
+
+    <%= f.submit "Sign Up", class: "btn btn-primary w-100 py-2" %>
+
+  <% end %>
+</div>

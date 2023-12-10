@@ -1,0 +1,21 @@
+<div id="<%= dom_id @directory %>" class="container text-white">
+  <br>
+  <br>
+  <div class="d-inline-flex align-items-center w-100 justify-content-between">
+    <h1><%= directory.name.capitalize %></h1>
+    <div class="d-flex align-items-center">
+      <%= link_to "New directory", new_subdirectory_directory_path(@directory), method: :get, class: "btn btn-outline-light me-2" %>
+      <%= button_to "Edit directory", edit_directory_path(@directory), method: :get, class: "btn btn-outline-light me-2" %>
+      <%= button_to "Delete directory", @directory, method: :delete,
+                    data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-outline-light me-2" %>
+    </div>
+  </div>
+  <div class="container w-50 float-end mt-5">
+      <%= form_with(model: @directory, url: attach_files_directory_path(@directory), method: :post,  local: true,
+                    html: { class: "input-group mb-3", multipart: true }) do |f| %>
+        <%= f.file_field :files, multiple: true, type: "file", class: "form-control", id: "inputGroupFile02" %>
+        <%= f.submit "Upload", for: "inputGroupFile02", class: "input-group-text" %>
+      <% end %>
+  </div>
+  <%#= render @directory, directory: directory %>
+</div>

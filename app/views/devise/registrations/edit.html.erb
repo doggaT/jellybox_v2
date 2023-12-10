@@ -1,0 +1,76 @@
+<div class="container text-white w-50 d-flex flex-column h-100">
+  <div>
+  <br/>
+  <h2>Edit <%= resource_name.to_s.humanize %></h2>
+  <br/>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="username-g">Username</span>
+      <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "form-control",
+                       "aria-label": "Username", "aria-describedby": "username-g" %>
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="email-g">Email</span>
+      <%= f.email_field :email, autocomplete: "email", class: "form-control",
+                        "aria-label": "Email", "aria-describedby": "email-g" %>
+    </div>
+
+    <div class="input-group mb-3" data-bs-toggle="tooltip" data-bs-placement="top"
+         title="Leave blank if you don't want to change it <% if @minimum_password_length %>
+      (<%= @minimum_password_length %> characters minimum)
+    <% end %>">
+      <span class="input-group-text" id="new-password-g">New Password</span>
+      <%= f.password_field :password, autocomplete: "new-password", class: "form-control",
+                           "aria-label": "New Password", "aria-describedby": "new-password-g" %>
+
+    </div>
+
+    <div class="input-group mb-3" data-bs-toggle="tooltip" data-bs-placement="top"
+         title="Leave blank if you don't want to change it <% if @minimum_password_length %>
+      (<%= @minimum_password_length %> characters minimum)
+    <% end %>">
+      <span class="input-group-text" id="confirm-password-g">Confirm Password</span>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control",
+                           "aria-label": "Confirm Password", "aria-describedby": "confirm-password-g" %>
+    </div>
+
+    <div>
+      <br/>
+      <h4>Confirm changes</h4>
+        <div class="input-group mb-3" data-bs-toggle="tooltip" data-bs-placement="top"
+             title="Enter your current password to confirm the changes">
+          <span class="input-group-text" id="confirm-password-g">Password</span>
+          <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control",
+              "aria-label": "Current Password", "aria-describedby": "current-password-g" %>
+        </div>
+
+        <div class="actions float-end">
+          <%= f.submit "Update", class: "btn btn-primary w-100 py-2" %>
+        </div>
+      <% end %>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+  </div>
+  </div>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <div class="py-3 my-4 border-top">
+    <h4>Cancel my account</h4>
+    <div>
+      <p>Unhappy?</p>
+      <%= button_to "Cancel my account", registration_path(resource_name), class: "btn btn-danger w-100 py-2",
+                    data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+    </div>
+  </div>
+</div>

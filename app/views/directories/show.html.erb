@@ -1,0 +1,60 @@
+<%= render @directory %>
+<div class="container text-white">
+  <p style="color: green"><%= notice %></p>
+
+  <% if not @directory.files.attached? and not @subdirectories.present? %>
+    <div class="d-flex justify-content-center h-100">
+      <h5 class="align-content-center align-items-center">Directory <%= @directory.name %> is empty!</h5>
+    </div>
+  <% else %>
+    <table class="table table-dark table-hover" id="directory-content">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">File Type</th>
+        <th scope="col">File Size</th>
+        <th scope="col">Date Created</th>
+        <th scope="col">Actions</th>
+      </tr>
+      </thead>
+      <tbody class="table-group-divider">
+      <% if @directory.files.attached? %>
+        <% @directory.files.blobs.each_with_index do |file, index| %>
+          <tr>
+            <td> <%= index + 1 %> </td>
+            <td> <%= file.filename %> </td>
+            <td> <%= file.content_type %> </td>
+            <td> <%= file.byte_size %> B</td>
+            <td> <%= file.created_at %> </td>
+            <td><%= link_to "Download", rails_blob_path(file, disposition: 'attachment') %></td>
+            <td><%= link_to "Delete", delete_attachment_directory_path(@directory, attachment_id: file.id), method: :delete %></td>
+          </tr>
+        <% end %>
+      <% end %>
+      <% if @subdirectories.present? %>
+        <% @subdirectories.each_with_index do |subdirectory, index| %>
+          <tr>
+            <td> <%= index + 1 %> </td>
+            <td> <%= link_to subdirectory.name.capitalize, subdirectory, class: "link-light" %> </td>
+            <td> - </td>
+            <td> - </td>
+            <td> <%= subdirectory.created_at %> </td>
+            <td></td>
+            <td></td>
+          </tr>
+        <% end %>
+      <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
+  <!--<div>-->
+  <!--  <%#= link_to "Edit this directory", edit_directory_path(@directory) %> |-->
+  <%#= link_to "Back to directories", directories_path %>
+
+  <%#= button_to "Destroy this directory", @directory, method: :delete %>
+
+  <!--</div>-->
+
+</div>

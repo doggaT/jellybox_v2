@@ -1,0 +1,28 @@
+<div class="form-check m-auto" id="sign_up">
+  <h1 class=" text-white h3 mb-3 fw-normal">Log in to your Account</h1><br/>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+    <div class="form-floating">
+      <%= f.text_field :login, autofocus: true, autocomplete: "username", class: "form-control", id: "floatingInput" %>
+      <%= f.label :login, "Username or Email", for: "floatingInput" %><br/>
+    </div>
+
+    <div class="form-floating">
+      <%= f.password_field :password, autocomplete: "current-password", class: "form-control", id: "floatingPassword" %>
+      <%= f.label :password, label: "floatingPassword" %><br/>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="form-check">
+        <%= f.check_box :remember_me, class: "form-check-input", type: "checkbox", id: "flexCheckDefault" %>
+        <%= f.label :remember_me, class: "form-check-label text-white", for: "flexCheckDefault" %>
+      </div>
+    <% end %>
+
+    <p class="form-check text-white my-3">Don't have an account? <%= render "devise/shared/links" %></p>
+
+    <%= f.submit "Log In", class: "btn btn-primary w-100 py-2" %>
+
+  <% end %>
+
+</div>

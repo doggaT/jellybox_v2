@@ -1,0 +1,34 @@
+<!--<h1>New subdirectory</h1>-->
+
+<%#= render "form", subdirectory: @subdirectory %>
+
+<!--<br>-->
+
+<!--<div>-->
+  <%#= link_to "Back to subdirectories", subdirectories_path %>
+<!--</div>-->
+
+<div class="container text-white">
+  <h1 class="h3 mb-3 fw-normal">New Directory</h1><br/>
+  <%= form_for @subdirectory do |f| %>
+    <div class="mb-3">
+      <%= f.label :name, "Directory Name", class: "form-label" %>
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control", "aria-describedby": "err" %>
+      <%= f.hidden_field :parent_id, value: @parent_directory.id %>
+      <% if @subdirectory.errors.any? %>
+        <div id="err" class="form-text text-danger">
+          <div>
+            <% @subdirectory.errors.full_messages.each do |message| %>
+              <p><%= message %>!</p>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <br>
+    <br>
+    <div class="float-end">
+      <%= f.submit "Create Directory", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
